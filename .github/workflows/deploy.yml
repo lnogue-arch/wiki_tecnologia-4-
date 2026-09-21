@@ -30,8 +30,10 @@ jobs:
 
       - name: Install and Build Quartz
         run: |
-          npx @jackyzha0/quartz create -d ./ -s shortest
-          npx @jackyzha0/quartz build
+          npm init -y
+          npm install @jackyzha0/quartz@latest
+          npx quartz create -d ./ -s shortest
+          npx quartz build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
