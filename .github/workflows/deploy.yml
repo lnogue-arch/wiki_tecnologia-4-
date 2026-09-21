@@ -23,18 +23,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build Quartz
-        uses: konstfish/quartz-build-action@v7
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          source: ./
+          node-version: 22
+
+      - name: Install and Build Quartz
+        run: |
+          npx @jackyzha0/quartz create -d ./ -s shortest
+          npx @jackyzha0/quartz build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: ./public
 
   deploy:
     environment:
